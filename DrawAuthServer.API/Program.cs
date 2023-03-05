@@ -22,9 +22,14 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+var dbHost = Environment.GetEnvironmentVariable("dbHost");
+var dbName = Environment.GetEnvironmentVariable("dbName");
+var dbPassword = Environment.GetEnvironmentVariable("dbPassword");
+var dbPort = Environment.GetEnvironmentVariable("dbPort");
+
 builder.Services.AddDbContext<AuthDbContext>(options =>
 {
-    var connectionString = builder.Configuration.GetConnectionString("MysqlServer");
+    var connectionString = $"server={dbHost};port={dbPort};database={dbName};User Id=root;password={dbPassword};";
     options.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString), sqlOptions =>
     {
         sqlOptions.MigrationsAssembly("AuthServer.DataAccess");

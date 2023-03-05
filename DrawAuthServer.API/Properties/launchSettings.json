@@ -5,7 +5,12 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "dbHost": "localhost",
+        "dbName": "authdb",
+        "dbPassword": "mysql123.",
+        "dbPort": "3306"
+
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5223"
@@ -15,7 +20,11 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "dbHost": "localhost",
+        "dbName": "authdb",
+        "dbPassword": "mysql123.",
+        "dbPort": "3306"
       }
     },
     "Docker": {

@@ -30,10 +30,11 @@ var dbPort = Environment.GetEnvironmentVariable("dbPort");
 builder.Services.AddDbContext<AuthDbContext>(options =>
 {
     var connectionString = $"server={dbHost};port={dbPort};database={dbName};User Id=root;password={dbPassword};";
-    options.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString), sqlOptions =>
-    {
-        sqlOptions.MigrationsAssembly("AuthServer.DataAccess");
-    });
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+    //    , sqlOptions =>
+    //{
+    //    sqlOptions.MigrationsAssembly("AuthServer.DataAccess");
+    //});
 });
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>

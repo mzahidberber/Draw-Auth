@@ -1,5 +1,4 @@
-﻿using AuthServer.Core.Exceptions;
-using AuthServer.DataAccess.Abstract;
+﻿using AuthServer.DataAccess.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

@@ -7,7 +7,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "dbHost": "localhost",
-        "dbName": "authdb",
+        "dbName": "drawdb1",
         "dbPassword": "mysql123.",
         "dbPort": "3306"
 
@@ -22,7 +22,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "dbHost": "localhost",
-        "dbName": "authdb",
+        "dbName": "drawdb1",
         "dbPassword": "mysql123.",
         "dbPort": "3306"
       }

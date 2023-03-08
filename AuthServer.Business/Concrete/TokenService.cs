@@ -31,12 +31,14 @@ namespace AuthServer.Business.Concrete
 
         private IEnumerable<Claim> GetClaims(User user, List<string> audiences)
         {
+            var userRoles = _userManager.GetRolesAsync(user).Result;
             var userList = new List<Claim> {
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email,user.Email),
                 new Claim(ClaimTypes.Name,user.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };
+            userList.AddRange(userRoles.Select(x => new Claim(ClaimTypes.Role, x)));
             userList.AddRange(audiences.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));
             return userList;
         }

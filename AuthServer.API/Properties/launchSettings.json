@@ -7,13 +7,13 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "dbHost": "localhost",
-        "dbName": "drawdb1",
+        "dbName": "drawdb4",
         "dbPassword": "mysql123.",
         "dbPort": "3306"
 
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5223"
+      "applicationUrl": "http://localhost:5002"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -22,7 +22,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "dbHost": "localhost",
-        "dbName": "drawdb1",
+        "dbName": "drawdb4",
         "dbPassword": "mysql123.",
         "dbPort": "3306"
       }

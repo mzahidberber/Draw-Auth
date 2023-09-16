@@ -13,15 +13,15 @@
     <img src="auth.png" style="width:70%">
 </div>
 
-Auth hizmeti authentication ve authorization işlemleri için token üretmek,token bilgilerini saklamak ve düzenlemek için tasarlanmıştır.Katmanlı mimari yapısındaki hizmet asp.net cor web api projesidir.Api,business,dataaccess ve core katmanlarından oluşmaktadır. Restapi türünde bir hizmettir.
+Auth service is designed to generate tokens for authentication and authorization transactions, and to store and organize token information. The service with a layered architecture structure is an asp.net cor web api project. It consists of API, business, dataaccess and core layers. It is a restapi type of service.
 
 <p>
-    Projede;
+    Technologies;
     <div style="max-width:36rem;">
         <table>
             <tbody>
                 <tr>
-                    <td scope="row">Data Erişim :</td>
+                    <td scope="row">Data Access :</td>
                     <td>Entity Framework Core</td>
                 </tr>
                 <tr>
@@ -33,41 +33,40 @@ Auth hizmeti authentication ve authorization işlemleri için token üretmek,tok
                     <td colspan="2">Fluent Validation</td>
                 </tr>
                 <tr>
-                    <td scope="row">Map : </td>
+                    <td scope="row">Mapping : </td>
                     <td colspan="2">AutoMapper</td>
                 </tr>
                 <tr>
-                    <td scope="row">Kullanıcı İşlemleri : </td>
+                    <td scope="row">User transection : </td>
                     <td colspan="2">Identity</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    teknolojileri kullanılmıştır.
 </p>
 
 
 
-<h3>Başlangıç</h3>
-<p>Kullanmak için dockerhubtan imageyi indirebilir</p>
+<h3>Quick Start</h3>
+<p>You can download the image from dockerhub to use it.</p>
 
 ```
 docker pull mzahidberber/drawauth:latest
 ```
 
-<p>veya kaynak kodu indirip kendiniz image oluşturabilirsiniz</p>
+<p>Or you can download the source code and create the image yourself.</p>
 
 ```
 docker build -t drawauth -f AuthServer.API/Dockerfile .
 ```
 
-<p>Containeri başlatmandan önce veriler için mysql sunucuyu başlatmalısınız.</p>
+<p>Before starting the container, you must start the mysql server for the data.</p>
 
 ```
 docker run --name data -p 3306:3306 --env MYSQL_ROOT_PASSWORD:123456 --network=draw -v <your-path>:/var/lib/mysql  mysql
 ```
 
-<p>Containeri başlatmandan önce veriler için mysql sunucuyu başlatmalısınız.</p>
+<p>Before starting the container, you must start the mysql server for the data.</p>
 
 ```
 docker run --name auth -p 5002:80 --env dbHost=data --env dbPort=3306 --env dbName=drawdb --env dbPassword=123456 --network=draw  drawauth

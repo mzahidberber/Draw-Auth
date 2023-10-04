@@ -33,11 +33,8 @@ var dbPort = Environment.GetEnvironmentVariable("dbPort");
 builder.Services.AddDbContext<AuthDbContext>(options =>
 {
     var connectionString = $"server={dbHost};port={dbPort};database={dbName};User Id=root;password={dbPassword};";
+
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-    //    , sqlOptions =>
-    //{
-    //    sqlOptions.MigrationsAssembly("AuthServer.DataAccess");
-    //});
 });
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>
@@ -85,6 +82,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var cors = Environment.GetEnvironmentVariable("cors").Split(";");
+
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins(cors)
+    .AllowAnyHeader()
+    .AllowAnyMethod();
+}));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -99,7 +105,7 @@ else
 }
 //iptal edilebilir
 app.UseCustomException();
-
+app.UseCors("corsapp");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

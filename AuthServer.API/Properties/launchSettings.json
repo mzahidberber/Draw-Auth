@@ -9,7 +9,8 @@
         "dbHost": "localhost",
         "dbName": "drawdb4",
         "dbPassword": "mysql123.",
-        "dbPort": "3306"
+        "dbPort": "3306",
+        "cors": "*"
 
       },
       "dotnetRunMessages": true,

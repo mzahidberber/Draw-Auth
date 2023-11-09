@@ -33,12 +33,12 @@ namespace AuthServer.Business.Concrete
         {
             var userRoles = _userManager.GetRolesAsync(user).Result;
             var userList = new List<Claim> {
-                new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.NameId,user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email,user.Email),
-                new Claim(ClaimTypes.Name,user.UserName),
+                new Claim(JwtRegisteredClaimNames.Name,user.UserName),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };
-            userList.AddRange(userRoles.Select(x => new Claim(ClaimTypes.Role, x)));
+            userList.AddRange(userRoles.Select(x => new Claim("roles", x)));
             userList.AddRange(audiences.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));
             return userList;
         }
@@ -57,7 +57,7 @@ namespace AuthServer.Business.Concrete
             var accessTokenExpiration = DateTime.Now.AddDays(_tokenOption.AccessTokenExpiration);
             var securityKey = SignService.GetSymmetricSecurityKey(_tokenOption.SecurityKey);
 
-            SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
                 issuer: _tokenOption.Issuer,
                 expires: accessTokenExpiration,
@@ -81,7 +81,7 @@ namespace AuthServer.Business.Concrete
             var refreshTokenExpiration = DateTime.Now.AddDays(_tokenOption.RefreshTokenExpiration);
             var securityKey = SignService.GetSymmetricSecurityKey(_tokenOption.SecurityKey);
 
-            SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
                 issuer: _tokenOption.Issuer,
                 expires: accessTokenExpiration,
